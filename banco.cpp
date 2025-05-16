@@ -2,6 +2,7 @@
 #include "banco.h"
 using namespace std;
 
+// Construtores de Cliente
 Cliente::Cliente(){}
 
 Cliente::Cliente(string n, string c){
@@ -9,6 +10,7 @@ Cliente::Cliente(string n, string c){
 	cpf = c;
 }
 
+//Getter e Setter do Nome e CPF
 string Cliente::getNome(){
 	return nome;
 }
@@ -25,6 +27,7 @@ void Cliente::setCPF(string c){
 	cpf = c;
 }
 
+//Construtores de ContaBancaria, com o saldo opcional (default = 0)
 ContaBancaria::ContaBancaria(int n, Cliente t){
 	numero = n;
 	titular.setNome(t.getNome());
@@ -39,6 +42,7 @@ ContaBancaria::ContaBancaria(int n, Cliente t, double s){
 	saldo = s;
 }
 
+// Função para depositar um valor no saldo
 void ContaBancaria::depositar(double valor){
 	// Impede a operação se for um valor negativo
 	if(valor<0){
@@ -47,6 +51,7 @@ void ContaBancaria::depositar(double valor){
 	saldo+=valor;
 }
 
+// Função para sacar um valor do saldo
 void ContaBancaria::sacar(double valor){
 	// Impede a operação se for um valor negativo
 	if (valor<0){
@@ -59,6 +64,8 @@ void ContaBancaria::sacar(double valor){
     	saldo-=valor;
 }
 
+// Funções para transferir valores de uma conta para uma, ou duas, contas
+// Sobrecarga de métodos
 void ContaBancaria::transferir(double valor, ContaBancaria &destino){
 	// Impede a operação se o valor for maior do que o saldo disponível
     	if(valor>saldo){
@@ -82,6 +89,7 @@ void ContaBancaria::transferir(double valor, ContaBancaria &destino1, ContaBanca
 	cout << "Transferido: R$ " << valor/2 << " para cada conta (" << destino1.numero << " e " << destino2.numero << ") da conta " << numero << endl;
 }
 
+// Funções que imprimem o saldo ou a informação da conta
 void ContaBancaria::exibirSaldo(){
 	cout << "Saldo atual da conta " << numero << ": R$ " << saldo << endl;
 }
