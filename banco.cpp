@@ -67,6 +67,7 @@ void ContaBancaria::transferir(double valor, ContaBancaria &destino){
 	// Saca o valor da conta original, e depois deposita na conta alvo
     	sacar(valor);
     	destino.depositar(valor);
+	cout << "Transferido: R$ " << valor << " da conta " << numero << " para a conta " << destino.numero << endl;
 }
 
 void ContaBancaria::transferir(double valor, ContaBancaria &destino1, ContaBancaria &destino2){
@@ -78,6 +79,7 @@ void ContaBancaria::transferir(double valor, ContaBancaria &destino1, ContaBanca
     	sacar(valor);
     	destino1.depositar(valor/2);
     	destino2.depositar(valor/2);
+	cout << "Transferido: R$ " << valor/2 << " para cada conta (" << destino1.numero << " e " << destino2.numero << ") da conta " << numero << endl;
 }
 
 void ContaBancaria::exibirSaldo(){
